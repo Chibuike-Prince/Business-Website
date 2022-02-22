@@ -1,0 +1,456 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    height: 100%;
+    box-sizing: border-box;
+    font-family: verdana, sans-serif, arial, 'Times New Roman', Times, serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.top_bar_container{
+    padding: 5px 50px;
+    background-color: darkblue;
+    color: white;
+    
+}
+/*NAVIGATION BAR STYLING*/
+.header_container{
+    background-color: white;
+    padding: 5px 50px;
+    box-shadow: 0px 3px 10px silver;/* This defines the header_container div with opx-horizontal, 1px-vertical, 10px-blurness, and color-silver.*/
+    position: sticky; /* This is what really makes our header container to stick to the top while scrolling.*/
+    display: flex;
+    top: 0; /* To make the head container fixed at the top while scrolling*/
+    z-index: 2; /* To make other items pass below the head container while scrolling*/
+
+}
+
+.header_container .media_menu_items{
+    display: none;
+}
+
+.header_container .media_menu_items{
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: 70px;
+    right: 2px;
+    flex-direction: column;
+    z-index: 2;
+    width: auto;
+    padding: 0px 15px;
+}
+
+.header_container img{
+    width: 30px;
+    height: 50px;
+
+}
+
+.header_container img:hover{
+    opacity: 0.8;
+    transition: 0.5s ease;
+}
+
+.header_container ul{
+    list-style-type: none;
+    margin-left: auto; /* To shift the ul to the right side of the screen*/
+    display: flex;
+}
+
+.header_container ul li{
+    padding: 10px 15px;
+    margin-top: 5px;
+}
+
+.header_container ul li a{
+    text-decoration: none;
+    color: black;
+}
+
+.header_container ul li a:hover{
+    color: blue;
+    transition: 0.5s ease;
+
+}
+/* SLIDER STYLING*/
+.slider_container{
+    overflow: hidden;
+    box-shadow: 0px 2px 10px silver;
+    height: 70%;
+}
+
+.slider_container figure{
+    display: flex;
+    position: relative;
+    width: 500%; /* Since we are using 5 images for the slider, we make the figure element to have the width of 5*100% = 500% since the individual images will be set at with 100% */
+    margin: 0; /* This sets all the margin around the figure element to 0, so that it won't give any gap from the slider container */
+    left: 0;/* This sets the first element in the figure element at 0 pixel of the left side */
+    animation: 20s slider infinite; /* 20s - twenty secs, 'slider' is the name we chose to give to the animation, 'infinite' will make it repeat unstoppedly. */
+    height: 100%;/* This forces the height of the figure element to the height of the slider_container irrespective of the heigth of the images it contains. */
+}
+
+.slider_container figure img{
+    width: 20%;/* THIS IS VERY IMPORTANT. 20% of the 500% width of our figure element will give us 100%. i,e., 20\100 * 500% = 100% */
+    
+}
+
+@keyframes slider{ /*We mind the "@keyframes" keyword for setting the slider animation.*/
+    0%{left: 0; transform: scale(1.5); opacity: 0.2;}
+    20%{left: 0; transform: scale(1);  opacity: 1;}/* (20%-0% = 20%) this gives us the width of the first img element and then it is positioned at 0 from the left side of the figure element. */
+    25%{left: -100%; transform: scale(1.5);  opacity: 0.2;}/* To move the whole image to the left since it has '-' sign. */
+    45%{left: -100%; transform: scale(1);  opacity: 1;}/* Remember that (45%-25% = 20%) which gives us the width of the image relative to the width of the figure element. */
+    50%{left: -200%; transform: scale(1.5);  opacity: 0.2;}
+    70%{left: -200%; transform: scale(1);  opacity: 1;}
+    75%{left: -300%; transform: scale(1.5);  opacity: 0.2;}
+    95%{left: -300%; transform: scale(1);  opacity: 1;}
+    100%{left: -400%; transform: scale(1.5); opacity: 1.2;}
+
+}
+
+/* 2ND SLIDER STYLING*/
+.slider{
+    max-width: 700px; /* for the maximum width our slider can be so that it will be adjustable.*/
+    border: 10px solid darkblue;
+    margin: 50px auto;
+    overflow: hidden;
+    position: relative; /* So that if we make any element in it absolute, it will still remain inside our slider element.*/
+}
+
+.slider .left_slide, .slider .right_slide{
+    position: absolute; /* So that we can position the slide arrow at any position we want inside the slider which is already relative in positioning.*/
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: red;
+    top: 50%; /* This causes the slide arrow to take a position 50% from the top of its parent element.*/
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    margin-top: -25px;
+    text-align: center;
+    transition: all 0.5s ease;
+}
+
+.slider .left_slide:hover, .slider .right_slide:hover{
+    background-color: orange;
+    box-shadow: 0px 0px 10px black ;
+}
+
+.slider .left_slide{
+    left: 30px;
+}
+
+.slider .right_slide{
+    right: 30px;
+}
+
+.slider .slider_items{
+    width: 400%; /*Since we have four images in the slider, its containing div have to take the width of 100%*4 =400% */
+    margin: 0;/*  So that they will lap from the edges of the parent div. */
+    left: 0; /* To start at 0 pixels from the left */
+    display: flex; /*So that the images will be placed horizontally next to each other in the slider_items div.*/
+
+}
+
+.slider .slider_items .item{
+    width: 25%; /* Since the immediate parent container - slider_items has the width of 400%, 25 of 400% = 100%, which is required to show the full images. */
+    display: none;
+    position: relative;
+}
+
+.slider .slider_items img{
+    width: 100%; /* This makes the images fully displayed. */
+    display: block;
+    animation: 1s ease zoom ;
+}
+
+@keyframes zoom{
+    0%{transform: scale(2); opacity: 0;}
+    100%{transform: scale(1); opacity: 1;}
+}
+
+.slider .slider_items .item .caption{
+    position: absolute;
+    background-color: red;
+    width: 100%;
+    height: 30px;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    padding-top: 5px;
+    opacity: 0.5;
+}
+
+.slider .slider_items .item.active{
+    display: block;
+}
+
+/* HOMEPAGE CONTAINER STYLING*/
+
+.homepage_container{
+    padding: 30px 50px;
+    text-align: center;
+    align-items: center;
+}
+
+.home_product_container{
+    padding: 20px 50px;
+    display: flex;
+    text-align: center;
+    align-items:center;
+    justify-content: center;
+
+}
+
+.product_container{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    padding: 20px 30px;
+    
+}
+
+.product{
+    background-color: white;
+    max-width: 200px; /* This makes our image to be flexible and adjustable to the size of the devise browsing our website istead of beig rigid.*/
+    box-shadow: 0px 1px 10px silver;
+    margin: 10px 20px;
+    overflow: hidden;
+    text-align: center;/*Makes every element in our product div to be centered, whether text or element.*/
+
+
+}
+.product:hover{
+    opacity: 0.8;
+    transition: all 0.5s ease;
+    border: 2px solid blue;
+}
+
+.product img{
+    width: 100%;
+}
+
+.product h4{
+    padding: 10px;
+}
+
+.products_button{
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
+.products_button:hover{
+    box-shadow: 0px 1px 10px darkred;
+    opacity: 0.8;
+    transition: all 0.5s ease;
+}
+
+
+/* FOOTER STYLING*/
+
+.footer{
+    font-size: small;
+    line-height: 1.3;
+}
+
+.footer1{
+    display: flex;
+    background-color: darkblue;
+    color: silver;
+    padding: 30px;
+}
+
+.footer_column{
+    padding: 20px;
+    text-align: left;
+    flex: 1;
+    text-justify: center;
+}
+
+.footer2
+{
+    text-align: center;
+    background-color:silver;
+    color:darkblue;
+    padding: 50px;
+}
+
+/* STYLING FOR OTHER_PAGES*/
+
+/* TITLE STYLING*/
+.title_bar{
+    box-shadow: 0px 2px 5px silver;
+    padding: 20px;
+    text-align: center;
+    z-index: 2;
+}
+
+/* MAIN CONTAINER STYLING*/
+.main_container{
+    display: flex;
+    text-align: center;
+}
+
+.main_container>div{
+    padding: 20px;
+}
+
+.side_bar_container{
+    flex-basis: auto; /*To make the side_bar_container resize to the size of its contents*/
+    padding: 20px 50px;
+    box-shadow: 5px 1px 2px silver;
+
+}
+
+
+.main_body_container{
+    flex: 1;
+    margin: 30px 50px;
+    text-justify: center;
+   
+
+}
+
+.main_body_container p{
+    justify-items: center;
+    text-align: justify;
+   
+
+}
+.main_body_container .contact_para{
+    justify-items: center;
+    text-align: justify;
+    text-align: center;
+}
+
+.header_container .display{/*This has no root in any of the php documents but it will be defined in our javascript to so that when we call its function it will show us the hidden items as the case may be.*/
+    display: block;
+}
+
+/* RESPONSIVE MEDIA QUERY STYLING. */
+@media only screen and (max-width:1337px){
+   .main_container{
+        flex-direction: column;
+    }
+    .product{
+        width:200px;
+    }
+    .product_container{
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .side_bar_container{
+        display: flex;
+        order: 1;
+        justify-content: center;
+        box-shadow: 0px -3px 5px silver;
+
+    }
+
+}
+
+@media only screen and (max-width:1134px){
+    .footer1{
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer1 .footer_column{
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 1059px){
+    .product_container{
+        flex-wrap: wrap;
+        padding: 10px;
+        
+    }
+ 
+}
+
+@media only screen and (max-width: 1056px){
+    .home_product_container{
+        flex-wrap: wrap;
+        padding: 0px 0px 15px;
+        
+    }
+    .product{
+        width: 250px;
+    }
+}
+
+@media only screen and (max-width: 1015px){
+    .product{
+        width: 300px;
+        margin: 10px;
+    }
+    .product_container{
+        padding: 0px;
+    }
+}
+
+@media only screen and (max-width: 994px){/*The max-width: 992px is the width at which every item in our main page remains perfectly okay*/
+    .main_body_container{
+        justify-content: center;
+        align-items: center;
+    }
+    .footer1{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .footer_column{
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 779px){
+    .header_container .menu_bar{
+        display: none;
+    }
+    .header_container .hamburger_menu{
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        width: 25px;
+        height: 25px;
+        border-radius: 4px;
+        background-color: blue;
+        margin-left: auto;
+        margin-top: 4px;
+        cursor: pointer;
+        overflow: hidden;
+        justify-content: space-between;
+        padding: 10px 5px;
+    }
+    .header_container .hamburger_menu .line{
+        width: 100%;
+        height: 3px;
+        background-color:darkblue;
+        
+    }
+}
+@media only screen and (max-width:620){
+    .home_product_container .product_container{
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width: 579){
+    .side_bar_container{
+        flex-direction: column;
+        
+    }
+}
